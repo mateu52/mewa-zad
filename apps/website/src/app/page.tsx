@@ -1,5 +1,7 @@
 //import styles from './page.module.css';
 "use client";
+//aplikacja z formularzem wysylająca dane do api
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";

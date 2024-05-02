@@ -1,5 +1,5 @@
 //import styles from './page.module.css';
-"use client";
+//"use client";
 //aplikacja z formularzem wysylająca dane do api
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,41 +7,32 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { loginSchema } from "./zodSchema/login";
+import { CreateReviewDto } from "./types";
+import { createReviewInAirtable } from "./api/services";
 
-type FormData = z.infer<typeof loginSchema>;
-export default function Index() {
+const createReview = async (formData: FormData) => {
+  'use server';
 
-  //const router = useRouter();
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting, isDirty, isValid },
-  } = useForm<FormData>({
-    resolver: zodResolver(loginSchema),
-  });
-
-  async function onSubmit(data: FormData){
-    console.log(data);
+  const review: CreateReviewDto = {
+    content: formData.get('content') as string,
+    author: formData.get('author') as string,
   }
+  await createReviewInAirtable(review);
+}
+
+
+export default function Index() {
   
+
   return (
     <div>
-      <form 
-        method="POST"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <label
-          htmlFor="opinion"
-        >Twoja opinia: </label>
-        <input
-          {...register("opinion", { required: true})}
-          id="opinion"
-          name="opinion"
-          type="text"
-          placeholder="twoja opinia"
-        />
-        <button type="submit">Dodaj komentarz</button>
+      <h1 className="mt-2">Form reviews</h1>
+      <form action={createReview}>
+        <input name="content" />
+        <input name="author" />
+        <button type="submit" className="bg-red-200">Wyslij</button>
       </form>
+      
     </div>
   );
 }

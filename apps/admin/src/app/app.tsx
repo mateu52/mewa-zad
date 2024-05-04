@@ -8,41 +8,35 @@ import styles from './app.module.css';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-const fetchReviews = async () => {
-  // noStore();
-  console.log('hej');
-  console.log('token: ', process.env.API_KEY, process.env);
-  const response = await fetch(
-    `https://api.airtable.com/v0/appf6l43Hh37LdCuC/reviews`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.AIRTABLE_API_TOKEN}`,
-      },
-    }
-  );
-  const data = await response.json();
-  console.log(data)
+import { fetchReviews } from './api/services';
+
+
+type Review = {
+  id: number;
+  fields: {
+    author: string;
+  }
 }
+
 export function App() {
-  //const [ opinions, setOpinions ] = useState();
-  console.log('token: ', process.env.API_KEY, process.env)
+  const [data, setData ] = useState<Review[]>([])
   useEffect(() => {
-    fetchReviews()
-    fetch('https://api.airtable.com/v0/appf6l43Hh37LdCuC/reviews', {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
-      }
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data)
-    })
-    .catch(error => console.error('Error:', error));
-  })
+    async function fetchData(){
+      const reviews = await fetchReviews()
+      setData(reviews);
+      console.log(reviews);
+
+    }
+    fetchData();
+  },[]);
   
+
   return (
     <div>
       <h1>Panel admina</h1>
+      {data.map((elem) => (
+        <p>{elem.fields.author}</p>
+      ))}
     </div>
   );
 }

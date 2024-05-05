@@ -8,13 +8,16 @@ import styles from './app.module.css';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-import { fetchReviews } from './api/services';
+import { fetchReviews, postReview } from './api/services';
 
 
 type Review = {
   id: number;
   fields: {
     author: string;
+    content: string;
+    accept?: boolean | undefined;
+    to_check?:boolean | undefined;
   }
 }
 
@@ -30,12 +33,23 @@ export function App() {
     fetchData();
   },[]);
   
-
+  
   return (
     <div>
       <h1>Panel admina</h1>
       {data.map((elem) => (
-        <p>{elem.fields.author}</p>
+        <div>
+          {elem.fields.to_check ? 
+            <>
+              <p>{elem.fields.author}</p>
+              <p>"{elem.fields.content}"</p>
+              <button onClick={() => postReview(elem.id, true, false)}>accept</button>
+              <button onClick={() => postReview(elem.id, false, false)}>reject</button>
+            </> :
+            null
+        }
+        </div>
+
       ))}
     </div>
   );

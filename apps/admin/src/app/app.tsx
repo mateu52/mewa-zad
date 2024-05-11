@@ -27,12 +27,12 @@ export function App() {
     async function fetchData(){
       const reviews = await fetchReviews()
       setData(reviews);
-      console.log(reviews);
+      console.log(reviews, 'ok');
 
     }
     fetchData();
   },[]);
-  
+  console.log(data)
   
   return (
     <div>

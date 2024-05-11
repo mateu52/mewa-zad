@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "common-ui": ["common-ui/src/index.ts"]
+      "common-ui": ["common-ui/src/index.ts"],
+      "data-access": ["data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

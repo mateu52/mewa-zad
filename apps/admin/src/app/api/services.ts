@@ -1,9 +1,7 @@
-import { RequestOptions } from "https";
 
 export const fetchReviews = async () => {
     // noStore();
     console.log('hej');
-    console.log('token: ', process.env.NX_API_TOKEN, process.env);
     const response = await fetch(
       `https://api.airtable.com/v0/appf6l43Hh37LdCuC/reviews`,
       {

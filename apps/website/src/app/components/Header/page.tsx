@@ -3,10 +3,9 @@ import Link from "next/link";
 export const Header = () => {
     return (
         <div>
-            <ul>
-                <li><Link href={'/'}>komentarze 1</Link></li>
+            <ul className="mb-4 ml-3">
+                <li><Link href={'/'}>komentarze </Link></li>
                 <li><Link href={'/form'}>formularz</Link></li>
-                <li><Link href={'/list'}>komentarze 2</Link></li>
             </ul>
         </div>
     )

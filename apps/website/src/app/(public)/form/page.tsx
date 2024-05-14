@@ -2,35 +2,38 @@
 //"use client";
 //aplikacja z formularzem wysylająca dane do api
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
+import { zod } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { useState, useTransition } from 'react';
 import * as z from "zod";
 import { loginSchema } from "../../zodSchema/login";
-import { CreateReviewDto } from "../../types";
 import { createReviewInAirtable } from "../../api/services";
-
-const createReview = async (formData: FormData) => {
-  'use server';
-
-  const review: CreateReviewDto = {
-    content: formData.get('content') as string,
-    author: formData.get('author') as string,
-  }
-  await createReviewInAirtable(review);
-}
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import { createReview } from "./action";
 
 
 export default function Index() {
-  
+  const formAction = async (formData: FormData) => {
+    'use server'
+    const serverResult = await createReview(formData);
+    console.log({serverResult})
+    if (serverResult.status === 'success') {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      await createReviewInAirtable(serverResult.payload!);
+      revalidatePath('/') //dane dodane i tak po zatwierdzeniu w admin
+      redirect('/')
+    }
+  }
 
     return (
-    <div>
+    <div className="bg-slate-400">
         <h1 className="mt-2">Form reviews</h1>
-        <form action={createReview}>
+        <form action={formAction} className="p-4">
             <input name="content" />
-            <input name="author" />
-            <button type="submit" className="bg-red-200">Wyslij</button>
+            <input name="author" className="ml-2"/>
+            <button type="submit" className="bg-green-200 ml-2 p-2">Wyslij</button>
         </form>
         
     </div>

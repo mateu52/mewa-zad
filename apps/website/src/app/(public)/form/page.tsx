@@ -1,41 +1,57 @@
 //import styles from './page.module.css';
-//"use client";
+"use client";
 //aplikacja z formularzem wysylająca dane do api
 
-import { zod } from "@hookform/resolvers/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useState, useTransition } from 'react';
 import * as z from "zod";
 import { loginSchema } from "../../zodSchema/login";
 import { createReviewInAirtable } from "../../api/services";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 import { createReview } from "./action";
+import { CreateReviewDto, createReviewSchema } from "../../types";
 
 
 export default function Index() {
-  const formAction = async (formData: FormData) => {
-    'use server'
-    const serverResult = await createReview(formData);
+  const [isError, setIsError] = useState(false);
+  const [ isPending, startTransition ] = useTransition();
+  const { push, refresh} = useRouter();
+  const {
+    register, 
+    handleSubmit,
+    formState: { errors},
+  } = useForm<CreateReviewDto>({
+    resolver: zodResolver(createReviewSchema)
+  })
+
+  const clientAction: SubmitHandler<CreateReviewDto> = async (data) => {
+    const serverResult = await createReview(data);
     console.log({serverResult})
-    if (serverResult.status === 'success') {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      await createReviewInAirtable(serverResult.payload!);
-      revalidatePath('/') //dane dodane i tak po zatwierdzeniu w admin
-      redirect('/')
+    if (serverResult.status === 'error') {
+      setIsError(true);
+    } else {
+      startTransition(() => push('/'));
+      startTransition(() => refresh());
     }
   }
 
     return (
     <div className="bg-slate-400">
         <h1 className="mt-2">Form reviews</h1>
-        <form action={formAction} className="p-4">
-            <input name="content" />
-            <input name="author" className="ml-2"/>
+        {isError && <p>Oh no server errror!</p>}
+        {isPending && <p>Loading...</p>}
+        <form onSubmit={handleSubmit(clientAction)} className="p-4">
+            <input {...register('content')} id="content" />
+            {errors.content && <p>{errors.content.message}</p>}
+            <input {...register('author')} id="author" className="ml-2"/>
+            {errors.author && <p>{errors.author.message}</p>}
             <button type="submit" className="bg-green-200 ml-2 p-2">Wyslij</button>
         </form>
         
     </div>
 );
 }
+
+

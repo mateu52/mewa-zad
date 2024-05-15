@@ -24,10 +24,9 @@ type AirtableReviewResponseDto = {
 };
 export default function Index() {
   const [data, setData] = useState<Review[]>([]);
-  console.log(process.env.NNEXT_PUBLIC_API_TOKEN, 'glowny')
   useEffect(() => {
     async function fetchData() {
-      console.log(process.env.NEXT_PUBLIC_API_TOKEN, 'async')
+      //console.log(process.env.NEXT_PUBLIC_API_TOKEN, 'async')
       try {
         const response = await fetch(
           'https://api.airtable.com/v0/appf6l43Hh37LdCuC/reviews?maxRecords=3&view=Grid%20view',

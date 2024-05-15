@@ -55,7 +55,7 @@
     "jest-environment-jsdom": "^29.4.1",
     "jest-environment-node": "^29.4.1",
     "nx": "18.2.2",
-    "postcss": "8.4.21",
+    "postcss": "^8.4.38",
     "prettier": "^2.6.2",
     "react-refresh": "^0.10.0",
     "tailwindcss": "3.2.7",
@@ -69,7 +69,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "@hookform/resolvers": "^3.3.4",
+    "@hookform/resolvers": "^3.4.0",
     "@nestjs/common": "^10.0.2",
     "@nestjs/core": "^10.0.2",
     "@nestjs/platform-express": "^10.0.2",
@@ -77,11 +77,11 @@
     "next": "^14.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.51.2",
+    "react-hook-form": "^7.51.4",
     "react-router-dom": "6.11.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0",
-    "zod": "^3.22.4"
+    "zod": "^3.23.8"
   }
 }

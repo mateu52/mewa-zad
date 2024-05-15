@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createReviewInAirtable } from "../../api/services";
-import { CreateReviewDto, createReviewSchema } from "../../types";
+import { CreateReviewDto, ReviewWithCheck, createReviewSchema } from "../../types";
 
 // export const createReview = async (formData: FormData) => {
 export const createReview = async (review: CreateReviewDto) => {
@@ -19,19 +19,22 @@ export const createReview = async (review: CreateReviewDto) => {
             status: 'error'
         }
         } else {
-            console.log('ok', review);
+            const reviewWithToCheck: ReviewWithCheck = {
+                ...review,
+                to_check: true
+            }
+            console.log('ok', reviewWithToCheck);
                 try {
-                await createReviewInAirtable(review);
+                await createReviewInAirtable(reviewWithToCheck);
                 revalidatePath('/');
                 return {
                     status: 'success',
-                    payload: review,
+                    payload: reviewWithToCheck,
                 };
                 } catch (error) {
                 console.error("Error saving review to Airtable:", error);
                 return {
                     status: 'error',
-                    error: error.message,
                 };
             }
         }

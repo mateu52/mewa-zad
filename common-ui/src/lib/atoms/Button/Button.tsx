@@ -1,7 +1,7 @@
 export function Button(){
 
     return(
-        <div>
+        <div className="">
             <button>Click me</button>
         </div>
     )

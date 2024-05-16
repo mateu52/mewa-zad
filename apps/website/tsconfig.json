@@ -19,7 +19,10 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
+    "paths": {
+      "@org/common-ui": ["common-ui/src/"]
+    }
   },
   "include": [
     "**/*.ts",

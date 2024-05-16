@@ -12,6 +12,8 @@ import { createReviewInAirtable } from "../../api/services";
 import { redirect } from "next/navigation";
 import { createReview } from "./action";
 import { CreateReviewDto, createReviewSchema } from "../../types";
+import { Button } from 'common-ui/src'
+import { } from '@org/common-ui'
 
 
 export default function Index() {
@@ -40,6 +42,7 @@ export default function Index() {
     return (
     <div className="bg-slate-400">
         <h1 className="mt-2">Form reviews</h1>
+        <Button />
         {isError && <p>Oh no server errror!</p>}
         {isPending && <p>Loading...</p>}
         <form onSubmit={handleSubmit(clientAction)} className="p-4">

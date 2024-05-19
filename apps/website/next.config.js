@@ -12,14 +12,14 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  webpack: (config, { isServer }) => {
-    // Dodaj alias dla @org/common-ui
-    config.resolve.alias['@org/common-ui'] = path.resolve(__dirname, '../common-ui/src/');
+  // webpack: (config, { isServer }) => {
+  //   // Dodaj alias dla @org/common-ui
+  //   config.resolve.alias['@org/common-ui'] = path.resolve(__dirname, '../common-ui/src/');
     
-    // Dodaj inne niestandardowe konfiguracje Webpacka tutaj, jeśli są potrzebne
+  //   // Dodaj inne niestandardowe konfiguracje Webpacka tutaj, jeśli są potrzebne
 
-    return config;
-  },
+  //   return config;
+  // },
 };
 
 const plugins = [

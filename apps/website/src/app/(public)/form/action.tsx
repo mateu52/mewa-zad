@@ -1,5 +1,6 @@
 'use server'
 
+import { analyzeSentiment } from "../../api/services";
 import { revalidatePath } from "next/cache";
 import { createReviewInAirtable } from "../../api/services";
 import { CreateReviewDto, ReviewWithCheck, createReviewSchema } from "../../types";
@@ -19,9 +20,11 @@ export const createReview = async (review: CreateReviewDto) => {
             status: 'error'
         }
         } else {
+            const sentiment = await analyzeSentiment(review.content)
             const reviewWithToCheck: ReviewWithCheck = {
                 ...review,
-                to_check: true
+                to_check: true,
+                sentiment: sentiment
             }
             console.log('ok', reviewWithToCheck);
                 try {

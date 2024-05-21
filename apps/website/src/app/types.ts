@@ -4,6 +4,7 @@ export type Review = {
     id: string;
     author: string;
     content: string;
+    sentiment: string;
 }
 
 //export type CreateReviewDto = Pick<Review, 'author' | 'content'>
@@ -14,3 +15,7 @@ export const createReviewSchema = z.object({
 })
 
 export type CreateReviewDto = z.infer<typeof createReviewSchema>;
+export type ReviewWithCheck = CreateReviewDto & {
+    to_check: boolean;
+    sentiment: string;
+};

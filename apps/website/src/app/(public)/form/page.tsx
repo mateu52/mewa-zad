@@ -6,10 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState, useTransition } from 'react';
-import * as z from "zod";
-import { loginSchema } from "../../zodSchema/login";
-import { createReviewInAirtable } from "../../api/services";
-import { redirect } from "next/navigation";
 import { createReview } from "./action";
 import { CreateReviewDto, createReviewSchema } from "../../types";
 
@@ -30,7 +26,7 @@ export default function Index() {
 
   const clientAction: SubmitHandler<CreateReviewDto> = async (data) => {
     const serverResult = await createReview(data);
-    console.log({serverResult})
+    console.log('form:', {serverResult})
     if (serverResult.status === 'error') {
       setIsError(true);
     } else {

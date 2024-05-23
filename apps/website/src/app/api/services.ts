@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { ReviewWithCheck } from "../types";
 import { OpenAI } from "openai";
 dotenv.config();
-console.log("key", process.env.OPENAI_API_KEY);
+//console.log("key", process.env.OPENAI_API_KEY);
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
   });
@@ -12,7 +12,7 @@ export const analyzeSentiment = async (text: string): Promise<string> => {
     try {
         const response = await openai.chat.completions.create({
             model: "gpt-4-turbo",
-            messages: [{ role: 'user', content: `Analyze the sentiment of the following text and categorize it as "positive", "negative", or "neutral":\n\n${text}\n\nSentiment:` }],
+            messages: [{ role: 'user', content: `Analyze ${text} and categorize it as "positive", "negative", or "neutral. in one word"` }],
             max_tokens: 10,
             temperature: 0.5,
         });

@@ -1,7 +1,11 @@
 import React from "react"
 
-export default function Negative() {
+type Negative = {
+    negative: number;
+}
+
+export default function Negative({negative}: Negative) {
     return (
-        <div>Liczba negatywnych: </div>
+        <div>Liczba negatywnych: {negative} </div>
     )
 }

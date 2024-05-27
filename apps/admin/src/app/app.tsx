@@ -5,7 +5,6 @@ import { Layout } from './components/Layout';
 import { ROUTE } from './types/routes'
 
 
-
 export default function App() {
     const router = createBrowserRouter([
         {

@@ -5,6 +5,6 @@ type Neutral = {
 }
 export default function Neutral({neutral}: Neutral) {
     return (
-        <div>Liczba neutralnych: {neutral} </div>
+        <div className="flex-1 p-4 bg-green-200 rounded-md">Liczba neutralnych: {neutral} </div>
     )
 }

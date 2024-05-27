@@ -6,6 +6,6 @@ type Positive = {
 
 export default function Positive({positive}  : Positive) {
     return (
-        <div>Liczba pozytywnych: {positive} </div>
+        <div className="flex mt-4">Liczba pozytywnych: {positive} </div>
     )
 }

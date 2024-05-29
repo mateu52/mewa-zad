@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { fetchReviews } from "../../api/services"
-import Positive from "../../components/Positive";
-import Negative from "../../components/Negative";
-import Neutral from "../../components/Neutral";
+import Numpositive from "../../components/NumPositive";
+import Numnegative from "../../components/NumNegative";
+import Numneutral from "../../components/NumNeutral";
 
 export type Review = {
     id: string;
@@ -39,13 +39,15 @@ export function Dashboard(){
     },[positive])
     return(
         <div>
-        <h1>Dashboard</h1>
-        <div className="flex m-9 caret-lime-50 pt-5">
-            <Positive positive={positive} />
-            <Negative negative={negative} />
-            <Neutral neutral={neutral} />
+        <div className="flex m-9 pt-5">
+            
         </div>
-        
+        {/* 3 komponenty z 3 ostatnimi komentarzami */}
+        <div>
+            <Numpositive positive={positive} />
+            <Numnegative negative={negative} />
+            <Numneutral neutral={neutral} />
+        </div>
         </div>
     )
 }

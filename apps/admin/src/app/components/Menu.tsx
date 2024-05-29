@@ -5,13 +5,13 @@ export function Menu(){
 
     return(
         <div>
-            <h3>Admin</h3>
+            <h3 className="underline decoration-sky-500">Admin</h3>
             <nav>
-                <ul>
-                    <li>
+                <ul className="flex">
+                    <li className="mr-4 mt-3 mb-3">
                         <Link to={ROUTE.PANEL}>Panel</Link>
                     </li>
-                    <li>
+                    <li className="mt-3 mb-3">
                         <Link to={ROUTE.DASHBOARD}>Dashboard</Link>
                     </li>
                 </ul>

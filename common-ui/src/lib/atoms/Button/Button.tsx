@@ -1,13 +1,18 @@
 type ButtonProps = {
     text: string;
     type: "button" | "submit" | "reset" | undefined;
+    style: string;
 }
 
-export function Button({text, type}: ButtonProps){
+export function Button({text, type, style}: ButtonProps){
 
     return(
         <div className="">
-            <button type={type} className="bg-green-200 ml-2 p-2">{text}</button>
+            <button 
+                type={type} 
+                className={style}>
+                {text}
+            </button>
         </div>
     )
 }

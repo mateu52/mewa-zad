@@ -36,16 +36,30 @@ export default function Index() {
   }
 
     return (
-    <div className="bg-slate-400">
-        <h1 className="mt-2">Form reviews</h1>
+    <div className="bg-slate-400 w-96 ml-3">
+        <h1 className="mt-2 pl-2 text-lg">Form reviews:</h1>
         {isError && <p>Oh no server errror!</p>}
         {isPending && <p>Loading...</p>}
-        <form onSubmit={handleSubmit(clientAction)} className="p-4">
-            <input {...register('content')} id="content" />
+        <form onSubmit={handleSubmit(clientAction)} className="p-4 flex flex-col space-y-4">
+            <textarea 
+              {...register('content')} 
+              id="content" 
+              className="h-40 w-48 pl-2 break-words whitespace-pre-wrap" 
+              placeholder="content"
+            />
             {errors.content && <p>{errors.content.message}</p>}
-            <input {...register('author')} id="author" className="ml-2"/>
+            <input 
+              {...register('author')} 
+              id="author" 
+              className="w-48 pl-2" 
+              placeholder="author"
+            />
             {errors.author && <p>{errors.author.message}</p>}
-            <Button text="Wyślij" type="submit"/>
+            <Button 
+              text="Wyślij" 
+              type="submit"  
+              style="bg-indigo-100 pl-10 pr-10 ml-2 p-2 border-2 border-indigo-300"
+            />
         </form>
         
     </div>

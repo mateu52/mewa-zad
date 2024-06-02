@@ -5,8 +5,8 @@
 import { useEffect, useState } from 'react';
 
 import { Review } from '../../types/type';
-import { fetchReviews, postReview } from '../../api/services';
-
+import { postReview } from '../../api/services';
+import { fetchReviews } from '@org/data-access';
 
 export function Panel() {
   const [data, setData ] = useState<Review[]>([])

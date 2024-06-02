@@ -26,7 +26,6 @@ export default function Index() {
   const [data, setData] = useState<Review[]>([]);
   useEffect(() => {
     async function fetchData() {
-      //console.log(process.env.NEXT_PUBLIC_API_TOKEN, 'async')
       try {
         const response = await fetch(
           'https://api.airtable.com/v0/appf6l43Hh37LdCuC/reviews',
@@ -62,11 +61,11 @@ export default function Index() {
   
   return (
     <div>
-      <h1>list reviews:</h1>
+      <h1 className='ml-1 text-2xl italic'>list reviews:</h1>
       {data.length > 0 ? (
         data.map((review) => (
-          <div key={review.id} className='pt-2'>
-            <p>{review.author}</p>
+          <div key={review.id} className='pt-2 pl-1 border-double border-2 border-indigo-300 mb-1 ml-2 w-64 break-words'>
+            <p className='font-medium'>{review.author}</p>
             <p className='pl-2'>{review.content}</p>
           </div>
         ))

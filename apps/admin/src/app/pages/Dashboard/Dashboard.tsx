@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { fetchReviews } from "../../api/services"
+//import { fetchReviews } from "../../api/services"
 import { Review } from "../../types/type";
 import Numpositive from "../../components/NumPositive";
 import Numnegative from "../../components/NumNegative";
@@ -8,7 +8,7 @@ import {PositiveComponent} from "../../components/PositiveComponent";
 import { NegativeComponent } from "../../components/NegativeComponent";
 import { NeutralComponent } from "../../components/NeutralComponent";
 // komponent z licznikiem opini oraz wyswietlanie ostatnich trzech
-
+import { fetchReviews } from '@org/data-access';
 
 export function Dashboard(){
     const [ numPositive, setNumPositive ] = useState<number>(0);

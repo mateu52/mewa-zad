@@ -18,7 +18,7 @@ export function Panel() {
 
     }
     fetchData();
-  },[]);
+  },[data]);
   console.log(data)
   
   return (

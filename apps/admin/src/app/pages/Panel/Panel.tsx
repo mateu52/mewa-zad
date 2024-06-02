@@ -33,7 +33,7 @@ export function Panel() {
   
   return (
     <div>
-      <h1>Panel admina</h1>
+      <h1 className='p-2'>Panel admina</h1>
       {data.map((elem) => (
         <div>
           {elem.fields.to_check ? 

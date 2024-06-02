@@ -6,6 +6,6 @@ type Negative = {
 
 export default function Numnegative({negative}: Negative) {
     return (
-        <div className="flex-1 p-4 bg-red-200 rounded-md">Liczba negatywnych: {negative} </div>
+        <div className="flex-1 p-2 bg-red-200 rounded-md">Liczba negatywnych: {negative} </div>
     )
 }

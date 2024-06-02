@@ -5,6 +5,6 @@ type Neutral = {
 }
 export default function Numneutral({neutral}: Neutral) {
     return (
-        <div className="flex-1 p-4 bg-gray-200 rounded-md">Liczba neutralnych: {neutral} </div>
+        <div className="flex-1 p-2 bg-gray-200 rounded-md">Liczba neutralnych: {neutral} </div>
     )
 }

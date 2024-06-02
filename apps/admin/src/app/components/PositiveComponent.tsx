@@ -1,4 +1,4 @@
-import { Review } from "../pages/Dashboard/Dashboard"
+import { Review } from "../types/type"; 
                 
 interface PositiveComponentProps {
     data: Review[];

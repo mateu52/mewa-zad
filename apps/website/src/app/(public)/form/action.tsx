@@ -9,10 +9,6 @@ import { CreateReviewDto, ReviewWithCheck, createReviewSchema } from "../../type
 export const createReview = async (review: CreateReviewDto) => {
         'use server';
     
-        // const review: CreateReviewDto = {
-        // content: formData.get('content') as string,
-        // author: formData.get('author') as string,
-        // }
         const result = createReviewSchema.safeParse(review);
         if (!result.success) {
         console.log(result.error.issues)

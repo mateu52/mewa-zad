@@ -1,28 +1,16 @@
 import React, { useEffect, useState } from "react"
 import { fetchReviews } from "../../api/services"
+import { Review } from "../../types/type";
 import Numpositive from "../../components/NumPositive";
 import Numnegative from "../../components/NumNegative";
 import Numneutral from "../../components/NumNeutral";
 import {PositiveComponent} from "../../components/PositiveComponent";
 import { NegativeComponent } from "../../components/NegativeComponent";
 import { NeutralComponent } from "../../components/NeutralComponent";
+// komponent z licznikiem opini oraz wyswietlanie ostatnich trzech
 
-export type Review = {
-    createdTime: string;
-    id: string;
-    fields: {
-        author: string;
-        content: string;
-        sentiment: string;
-        accept?: boolean | undefined;
-        created_at: string;
-        to_check?: boolean | undefined;
-
-    }
-}
 
 export function Dashboard(){
-    const [ data, setData ] = useState<Review[]>();
     const [ numPositive, setNumPositive ] = useState<number>(0);
     const [ numNegative, setNumNegative ] = useState<number>(0);
     const [numNeutral, setNumNeutral ] = useState<number>(0);
@@ -39,13 +27,7 @@ export function Dashboard(){
             const posit = acceptedReviews.filter((elem: Review) => elem.fields.sentiment === "Positive");
             const negat = acceptedReviews.filter((elem: Review) => elem.fields.sentiment === "Negative");
             const neut = acceptedReviews.filter((elem: Review) => elem.fields.sentiment === "Neutral");
-            // const PositiveComponent = acceptedReviews.filter((elem: Review) => {
-            //     let count = 0; 
-            //     return(
-            //         elem
-            //     )
-            // })
-            setData(acceptedReviews);
+
             setNumPositive(posit.length);
             setNumNegative(negat.length);
             setNumNeutral(neut.length);

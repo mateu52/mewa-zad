@@ -4,19 +4,9 @@
 'use server'
 import { useEffect, useState } from 'react';
 
-
+import { Review } from '../../types/type';
 import { fetchReviews, postReview } from '../../api/services';
 
-
-type Review = {
-  id: number;
-  fields: {
-    author: string;
-    content: string;
-    accept?: boolean | undefined;
-    to_check?:boolean | undefined;
-  }
-}
 
 export function Panel() {
   const [data, setData ] = useState<Review[]>([])

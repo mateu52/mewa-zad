@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
-// komponent wyswietlajacy dane z api ( do zatwierdzenia)
+// komponent wyswietlajacy dane z api (zatwierdzone w panelu Admin)
 'use client'
 import { useEffect, useState } from 'react';
 

@@ -8,6 +8,5 @@ export type Review = {
         accept?: boolean | undefined;
         created_at: string;
         to_check?: boolean | undefined;
-
     }
 }

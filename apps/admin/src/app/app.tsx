@@ -3,6 +3,8 @@ import {Panel} from './pages/Panel';
 import {Dashboard} from './pages/Dashboard';
 import { Layout } from './components/Layout';
 import { ROUTE } from './types/routes'
+import { Ems } from './pages/Ems';
+import { EmsForm } from './pages/Ems-form';
 
 
 export default function App() {
@@ -18,6 +20,14 @@ export default function App() {
                 {
                     path: ROUTE.DASHBOARD,
                     element: <Dashboard />
+                },
+                {
+                    path: '/Ems',
+                    element: <Ems />
+                },
+                {
+                    path: '/Ems-form',
+                    element: <EmsForm />
                 }
             ]
         }

@@ -6,7 +6,7 @@ type EmployeesDto = {
   author: string,
   content: string,
 }
-@Controller('employees')   //localhost:3002/api/reviews
+@Controller('employees')   //localhost:3002/api/employess
 export class EmployeesController {
   constructor(private readonly employeesService: EmployeesService) {}
 
@@ -16,12 +16,12 @@ export class EmployeesController {
   }
 
   @Get(':id')
-  getEmployee(@Param(':id') id: number) {
+  getEmployee(@Param(':id') id: string) {
     return this.employeesService.getEmployee(id)
   }
 
   @Delete(':id')
-  async deleteEmployees(@Param(':id') id: number) {
+  async deleteEmployees(@Param(':id') id: string) {
     await this.employeesService.deleteEmployees(id);
     return {};
   }

@@ -14,6 +14,12 @@ export function Menu(){
                     <li className="mt-2 mb-1">
                         <Link to={ROUTE.DASHBOARD}>Dashboard</Link>
                     </li>
+                    <li className="ml-4 mt-2 mb-1">
+                        <Link to={'/Ems'}>Ems</Link>
+                    </li>
+                    <li className="ml-4 mt-2 mb-1">
+                        <Link to={'/Ems-form'}>Ems form</Link>
+                    </li>
                 </ul>
             </nav>
             <Outlet />
